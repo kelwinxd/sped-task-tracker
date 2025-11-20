@@ -12,7 +12,7 @@ public class TaskRepository : ITaskRepository
         _context = context;
     }
 
-    //Liste Todos as Tasks
+    //Lista Todos as Tasks
     public async Task<List<TaskItem>> GetAllAsync() => 
     await _context.Tasks.ToListAsync();
 
