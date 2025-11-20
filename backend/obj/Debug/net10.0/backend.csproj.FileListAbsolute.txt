@@ -204,3 +204,6 @@ C:\Users\Usuario\Documents\projetoTesteSped\backend\obj\Debug\net10.0\refint\bac
 C:\Users\Usuario\Documents\projetoTesteSped\backend\obj\Debug\net10.0\backend.pdb
 C:\Users\Usuario\Documents\projetoTesteSped\backend\obj\Debug\net10.0\backend.genruntimeconfig.cache
 C:\Users\Usuario\Documents\projetoTesteSped\backend\obj\Debug\net10.0\ref\backend.dll
+C:\Users\Usuario\Documents\projetoTesteSped\backend\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Usuario\Documents\projetoTesteSped\backend\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Usuario\Documents\projetoTesteSped\backend\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll

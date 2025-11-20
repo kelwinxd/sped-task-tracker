@@ -13,15 +13,20 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(Connect
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 
+//Adiciona Controles
 builder.Services.AddControllers();
-builder.Services.AddOpenApi();
+
+
+builder.Services.AddEndpointsApiExplorer(); // necessário para descobrir os endpoints
+builder.Services.AddSwaggerGen();           // gera a documentação Swagger
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+     app.UseSwagger();       // gera o JSON da documentação
+    app.UseSwaggerUI();     // cria a interface web interativa
 }
 
 app.UseHttpsRedirection();
