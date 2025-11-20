@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using backend.Data;
+using backend.Repositories;
+using backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,9 @@ var ConnectionString = builder.Configuration.GetConnectionString("DefaultCon");
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(ConnectionString));
 
+//Injeção de Dependências
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
