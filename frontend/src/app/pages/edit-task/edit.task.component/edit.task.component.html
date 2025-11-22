@@ -1,1 +1,16 @@
-<p>edit.task.component works!</p>
+<div>
+    <h2>Editar Tarefa</h2>
+    <form [FormGroup]="form" (ngSubmit)="submit()">
+        <label>Descrição</label>
+        <textarea formControlName="descricao">     
+        </textarea>
+
+        <label>Status</label>
+        <select formControleName="status">
+            <option *ngFor="let s of statuses" [value]="s">{{s}}</option>
+        </select>
+
+        <button type="submit" [disabled]="form.invalid">Salvar</button>
+
+    </form>
+</div>
