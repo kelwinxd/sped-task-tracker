@@ -1,6 +1,6 @@
 <div>
 <h1>Criar Tarefa</h1>
-<form [FormGroup]="form" (ngSubmit)="submit()">
+<form [formGroup]="form" (ngSubmit)="submit()">
     <label>Titulo</label>
     <input type="text" formControlName="titulo" />
     <p *ngIf="form.get('titulo')?.invalid && form.get('titulo')?.touched">

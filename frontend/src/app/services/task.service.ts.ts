@@ -8,7 +8,7 @@ import { TaskModel } from '../models/task.model';
   providedIn: 'root',
 })
 export class TaskServiceTs {
-    private apiUrl = 'http://localhost:5222/tasks'
+    private apiUrl = 'http://localhost:5222/api/task'
 
     constructor(private http: HttpClient){}
 
@@ -25,7 +25,7 @@ export class TaskServiceTs {
     }
 
     updateTask(id:number, body: Partial<TaskModel>): Observable<TaskModel> {
-      return this.http.put<TaskModel>(`${this.apiUrl}/${id}`, body)
+      return this.http.post<TaskModel>(`${this.apiUrl}/${id}`, body)
     }
 
     deleteTask(id:number) : Observable<void> {

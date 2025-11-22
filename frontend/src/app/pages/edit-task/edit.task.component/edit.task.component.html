@@ -1,12 +1,12 @@
 <div>
     <h2>Editar Tarefa</h2>
-    <form [FormGroup]="form" (ngSubmit)="submit()">
+    <form [formGroup]="form" (ngSubmit)="submit()">
         <label>Descrição</label>
         <textarea formControlName="descricao">     
         </textarea>
 
         <label>Status</label>
-        <select formControleName="status">
+        <select formControlName="status">
             <option *ngFor="let s of statuses" [value]="s">{{s}}</option>
         </select>
 

@@ -17,8 +17,8 @@ export class CreateTaskComponent {
 
   constructor(private fb:FormBuilder, private service: TaskServiceTs, private router: Router){
     this.form = this.fb.group({
-      titulo:['', Validators.required, Validators.min(3)],
-      descricao:['', Validators.required, Validators.min(5)]
+      titulo:['', [Validators.required, Validators.min(3)]],
+      descricao:['', [Validators.required, Validators.min(5)]]
     })
   }
 

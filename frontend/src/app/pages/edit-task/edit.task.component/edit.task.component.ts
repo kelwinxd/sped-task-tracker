@@ -27,15 +27,15 @@ export class EditTaskComponent implements OnInit {
     this.id = Number(this.aroute.snapshot.paramMap.get("id"))
 
     this.form = this.fb.group({
-      descricao: ['', Validators.required, Validators.min(5)],
-      status: ['', Validators.required]
+      descricao: ['', [Validators.required, Validators.min(5)]],
+      status: ['', [Validators.required]]
     })
 
     this.service.getTask(this.id).subscribe({
       next: (task) => {
         this.form.patchValue({
-          descricao: task.Descricao,
-          status: task.Status
+          descricao: task.descricao,
+          status: task.status
 
         })
       },

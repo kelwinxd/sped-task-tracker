@@ -1,37 +1,37 @@
 <div>
   <div>
     <h2>Pendentes</h2>
-    <div *ngFor="let t of getByStatus('Pendente')">
-        <strong>{{t.Titulo}}</strong>
-        <p>{{t.Descricao}}</p>
-        <p>{{t.CreatedAt}}</p>
+    <div *ngFor="let t of pendentes">
+        <strong>{{t.titulo}}</strong>
+        <p>{{t.descricao}}</p>
+        <p>{{t.createdAt}}</p>
 
-        <a [routerLink]="['edit/',t.id]">Editar</a>
-        <button (click)="deleteTask(id)">Deletar</button>
+        <a [routerLink]="['/edit/',t.id]">Editar</a>
+        <button (click)="deleteTask(t.id)">Deletar</button>
     </div>
   </div>
 
   <div>
     <h2>Em Andamento</h2>
-    <div *ngFor="let t of getByStatus('Em Andamento')">
-        <strong>{{t.Titulo}}</strong>
-        <p>{{t.Descricao}}</p>
-        <p>{{t.CreatedAt}}</p>
+    <div *ngFor="let t of emAndamento">
+        <strong>{{t.titulo}}</strong>
+        <p>{{t.descricao}}</p>
+        <p>{{t.createdAt}}</p>
 
-        <a [routerLink]="['edit/',t.id]">Editar</a>
-        <button (click)="deleteTask(id)">Deletar</button>
+        <a [routerLink]="['/edit/',t.id]">Editar</a>
+        <button (click)="deleteTask(t.id)">Deletar</button>
     </div>
   </div>
 
   <div>
     <h2>Concluídas</h2>
-    <div *ngFor="let t of getByStatus('Concluído')">
-        <strong>{{t.Titulo}}</strong>
-        <p>{{t.Descricao}}</p>
-        <p>{{t.CreatedAt}}</p>
+    <div *ngFor="let t of concluidas">
+        <strong>{{t.titulo}}</strong>
+        <p>{{t.descricao}}</p>
+        <p>{{t.createdAt}}</p>
 
-        <a [routerLink]="['edit/',t.id]">Editar</a>
-        <button (click)="deleteTask(id)">Deletar</button>
+        <a [routerLink]="['/edit/',t.id]">Editar</a>
+        <button (click)="deleteTask(t.id)">Deletar</button>
     </div>
   </div>
 

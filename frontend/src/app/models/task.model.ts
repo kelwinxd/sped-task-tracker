@@ -1,7 +1,7 @@
 export interface TaskModel {
-    Id: number,
-    Titulo: string,
-    Descricao: string,
-    Status: 'Pendente' | 'Em Andamento' | 'Concluído'
-    CreatedAt: string
+    id: number,
+    titulo: string,
+    descricao: string,
+    status: 'Pendente' | 'Em Andamento' | 'Concluído'
+    createdAt: string
 }
