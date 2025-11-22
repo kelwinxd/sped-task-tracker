@@ -3,5 +3,5 @@ export interface TaskModel {
     Titulo: string,
     Descricao: string,
     Status: 'Pendente' | 'Em Andamento' | 'Concluído'
-    
+    CreatedAt: string
 }
