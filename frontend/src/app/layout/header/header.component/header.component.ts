@@ -1,10 +1,20 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  mobileBtnOpen: boolean = false;
+
+  open(){
+    this.mobileBtnOpen = true
+  }
+  close(){
+    this.mobileBtnOpen = false
+  }
+}

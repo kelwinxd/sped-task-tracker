@@ -1,6 +1,6 @@
 <div>
-    <h2>Editar Tarefa</h2>
-    <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-col w-[500px] mt-5 mx-auto bg-white px-5 py-5 rounded-2xl">
         <label>Descrição</label>
         <textarea formControlName="descricao">     
         </textarea>
@@ -10,7 +10,7 @@
             <option *ngFor="let s of statuses" [value]="s">{{s}}</option>
         </select>
 
-        <button type="submit" [disabled]="form.invalid">Salvar</button>
+        <button type="submit" class="btn-form mt-10" [disabled]="form.invalid">Salvar</button>
 
     </form>
 </div>

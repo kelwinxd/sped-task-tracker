@@ -1,18 +1,18 @@
 <div>
-<h1>Criar Tarefa</h1>
-<form [formGroup]="form" (ngSubmit)="submit()">
+
+<form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-col w-[500px] mt-5 mx-auto bg-white px-5 py-5 rounded-2xl">
     <label>Titulo</label>
-    <input type="text" formControlName="titulo" />
-    <p *ngIf="form.get('titulo')?.invalid && form.get('titulo')?.touched">
+    <input type="text" formControlName="titulo"/>
+    <p *ngIf="form.get('titulo')?.invalid && form.get('titulo')?.touched" class="text-red-400">
         Campo Invalido!
     </p>
 
     <label>Descrição</label>
     <input type="text" formControlName="descricao" />
-    <p *ngIf="form.get('descricao')?.invalid && form.get('descricao')?.touched">
+    <p *ngIf="form.get('descricao')?.invalid && form.get('descricao')?.touched" class="text-red-400">
         Campo Invalido!
     </p>
 
-    <button type="submit" [disabled]="form.invalid">Criar</button>
+    <button type="submit" class="btn-form mt-5" [disabled]="form.invalid">Criar</button>
 </form>
 </div>

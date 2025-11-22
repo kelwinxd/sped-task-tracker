@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   standalone:true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './create.task.component.html',
-  styleUrl: './create.task.component.css',
+  styleUrls: ['./create.task.component.css'],
 })
 export class CreateTaskComponent {
   form!: FormGroup

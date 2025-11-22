@@ -1,31 +1,48 @@
-<div>
-  <div>
-    <h2>Pendentes</h2>
-    <div *ngFor="let t of pendentes">
-        <strong>{{t.titulo}}</strong>
-        <p>{{t.descricao}}</p>
-        <p>{{t.createdAt}}</p>
+<div class="flex flex-col space-y-5 md:flex-row justify-between px-7 space-x-5 mt-10">
+  <div class="container-task bg-yellow-100 border border-yellow-500 ">
+    <h2><div class="mark pending"></div>Pendentes</h2>
+    <div *ngFor="let t of pendentes" class="task">
+     <strong>{{t.titulo}}</strong>
+        <p class="mt-2">{{t.descricao}}</p>
+       <p><i class="fa-solid fa-calendar "></i>
+      {{ t.createdAt | date:'dd/MM/yyyy' }}</p>
 
-        <a [routerLink]="['/edit/',t.id]">Editar</a>
-        <button (click)="deleteTask(t.id)">Deletar</button>
+        <div class="flex justify-between mt-2 py-2 border-t border-gray-300">
+        <a [routerLink]="['/edit/',t.id]" class="flex items-center gap-2 bg-white px-4 py-2 rounded-3xl text-blue-800 border border-blue-800">
+          <i class="fa-solid fa-pen"></i>
+
+          Editar
+        </a>
+        <button (click)="deleteTask(t.id)" class="btn-delete"><i class="fa-solid fa-trash"></i> Deletar
+</button>
+        </div>
+  
     </div>
   </div>
 
-  <div>
-    <h2>Em Andamento</h2>
-    <div *ngFor="let t of emAndamento">
+  <div class="container-task bg-blue-100">
+    <h2><div class="mark onprogress"></div>Em Andamento</h2>
+    <div *ngFor="let t of emAndamento" class="task">
         <strong>{{t.titulo}}</strong>
-        <p>{{t.descricao}}</p>
-        <p>{{t.createdAt}}</p>
+        <p class="mt-2">{{t.descricao}}</p>
+       <p><i class="fa-solid fa-calendar "></i>
+      {{ t.createdAt | date:'dd/MM/yyyy' }}</p>
 
-        <a [routerLink]="['/edit/',t.id]">Editar</a>
-        <button (click)="deleteTask(t.id)">Deletar</button>
+        <div class="flex justify-between mt-2 py-2 border-t border-gray-300">
+        <a [routerLink]="['/edit/',t.id]" class="flex items-center gap-2 bg-white px-4 py-2 rounded-3xl text-blue-800 border border-blue-800">
+          <i class="fa-solid fa-pen"></i>
+
+          Editar
+        </a>
+        <button (click)="deleteTask(t.id)" class="btn-delete"><i class="fa-solid fa-trash"></i> Deletar
+</button>
+        </div>
     </div>
   </div>
 
-  <div>
-    <h2>Concluídas</h2>
-    <div *ngFor="let t of concluidas">
+  <div class="container-task bg-green-100">
+    <h2><div class="mark finish"></div>Concluídas</h2>
+    <div *ngFor="let t of concluidas" class="task">
         <strong>{{t.titulo}}</strong>
         <p>{{t.descricao}}</p>
         <p>{{t.createdAt}}</p>

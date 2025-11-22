@@ -1,8 +1,27 @@
-<header>
+<header class=" max-w-6xl mx-auto flex justify-between py-7 px-5 sm:py-5 sm:px-2 md:px-5 items-center bg-white h-[10vh] ">
     
     <div>Logo</div>
-    <nav>
+    <nav class="hidden md:flex space-x-10 text-first font-bold items-center ">
         <a routerLink="/tasks">Tarefas</a>
-        <a routerLink="/create">Criar Tarefas</a>
+        <a routerLink="/create" class="bg-first text-white px-5 py-2 rounded-full">+ Criar Tarefas</a>
     </nav>
+
+    <div class="md:hidden"  (click)="open()">
+    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+    </div>
+
+    <div *ngIf="mobileBtnOpen" class="absolute bg-white h-screen w-[200px] top-0 right-0 px-5 py-7 md:hidden">
+        <button class="text-first font-bold text-2xl mb-10" (click)="close()">X</button>
+        <nav class="flex flex-col items-start space-y-10" >
+        
+        <a routerLink="/tasks">Tarefas</a>
+        <a routerLink="/create" class="bg-first text-white px-5 py-2 rounded-full">Criar Tarefas</a>
+
+        </nav>
+    </div>
+  
+   
 </header>
