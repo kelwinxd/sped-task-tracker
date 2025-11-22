@@ -1,1 +1,18 @@
-<p>create.task.component works!</p>
+<div>
+<h1>Criar Tarefa</h1>
+<form [FormGroup]="form" (ngSubmit)="submit()">
+    <label>Titulo</label>
+    <input type="text" formControlName="titulo" />
+    <p *ngIf="form.get('titulo')?.invalid && form.get('titulo')?.touched">
+        Campo Invalido!
+    </p>
+
+    <label>Descrição</label>
+    <input type="text" formControlName="descricao" />
+    <p *ngIf="form.get('descricao')?.invalid && form.get('descricao')?.touched">
+        Campo Invalido!
+    </p>
+
+    <button type="submit" [disabled]="form.invalid">Criar</button>
+</form>
+</div>
