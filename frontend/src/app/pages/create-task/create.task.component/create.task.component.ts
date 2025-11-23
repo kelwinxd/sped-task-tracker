@@ -13,32 +13,38 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./create.task.component.css'],
 })
 export class CreateTaskComponent {
-  form!: FormGroup
 
   constructor(private fb:FormBuilder, private service: TaskServiceTs, private router: Router){
+
     this.form = this.fb.group({
-      titulo:['', [Validators.required, Validators.min(3)]],
-      descricao:['', [Validators.required, Validators.min(5)]]
+
+      titulo:['', [Validators.required, Validators.min(3), Validators.max(30)]], //Validações para Input Titulo
+      descricao:['', [Validators.required, Validators.min(5),Validators.max(70) ]] //Validações para Input Descricao
+
     })
+
   }
+
+  form!: FormGroup
 
   submit(){
     if(this.form.invalid) return
 
     this.service.createTask(this.form.value).subscribe({
+      //Função se der Certo
       next: () => {
         alert("Tarefa Criada com Sucesso!")
         this.router.navigate(["/tasks"])
         this.form.reset()
       },
 
+      //Tratamento de erros
       error: (err) => {
         console.error(err, "erro ao cadastrar")
         alert("Erro ao Criar!")
       }
     })
   }
-
 
 
 }

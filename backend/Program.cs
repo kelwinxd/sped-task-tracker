@@ -5,8 +5,10 @@ using backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Conexão definida no appsettings.josn
 var ConnectionString = builder.Configuration.GetConnectionString("DefaultCon");
 
+//Definição de Banco
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(ConnectionString));
 
 //Injeção de Dependências
@@ -17,15 +19,16 @@ builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddControllers();
 
 
-builder.Services.AddEndpointsApiExplorer(); // necessário para descobrir os endpoints
-builder.Services.AddSwaggerGen();           // gera a documentação Swagger
+builder.Services.AddEndpointsApiExplorer(); 
+//Gera a documentação Swagger
+builder.Services.AddSwaggerGen(); 
 
-// Configura CORS
+//Configura CORS
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        // Permite que o Angular em localhost:4200 acesse a API
+        
         policy.WithOrigins("http://localhost:4200")
               .AllowAnyHeader()
               .AllowAnyMethod();
@@ -37,7 +40,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-     app.UseSwagger();       // gera o JSON da documentação
+     app.UseSwagger();       
     app.UseSwaggerUI();     // cria a interface web interativa
 }
 

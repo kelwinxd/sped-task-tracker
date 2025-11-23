@@ -1,6 +1,9 @@
 <header class=" max-w-6xl mx-auto flex justify-between py-7 px-5 sm:py-5 sm:px-2 md:px-5 items-center bg-white h-[10vh] ">
     
-    <div>Logo</div>
+    <div class="flex flex-col space-y-0">
+        <h2 class="text-first font-bold text-3xl h-7">SPED</h2>
+        <p class="text-first font-semibold">Task Tracker</p>
+    </div>
     <nav class="hidden md:flex space-x-10 text-first font-bold items-center ">
         <a routerLink="/tasks">Tarefas</a>
         <a routerLink="/create" class="bg-first text-white px-5 py-2 rounded-full">+ Criar Tarefas</a>
@@ -15,10 +18,10 @@
 
     <div *ngIf="mobileBtnOpen" class="absolute bg-white h-screen w-[200px] top-0 right-0 px-5 py-7 md:hidden">
         <button class="text-first font-bold text-2xl mb-10" (click)="close()">X</button>
-        <nav class="flex flex-col items-start space-y-10" >
+        <nav class="flex flex-col items-center space-y-5" >
         
-        <a routerLink="/tasks">Tarefas</a>
-        <a routerLink="/create" class="bg-first text-white px-5 py-2 rounded-full">Criar Tarefas</a>
+        <a routerLink="/tasks" class="font-semibold border-b border-gray-300 py-3 w-full text-center">Tarefas</a>
+        <a routerLink="/create" class="bg-first text-white px-5 py-2 rounded-full font-semibold">+ Criar Tarefas</a>
 
         </nav>
     </div>

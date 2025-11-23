@@ -37,30 +37,39 @@ export class ListTaskComponent implements OnInit {
 
   loadTask(): void {
     this.service.getTasks().subscribe({
+      //Funcao se der certo
       next: (res) => {
         this.tasks = res;
+
+        //Filtros para segregar a lista na view
         this.pendentes = this.tasks.filter(t => t.status === 'Pendente');
         this.emAndamento = this.tasks.filter(t => t.status === 'Em Andamento');
         this.concluidas = this.tasks.filter(t => t.status === 'Concluído');
 
-        // faz o Angular a atualizar a view
+        //Faz Atualizar a view
         this.cdr.detectChanges();
 
-        console.log('tasks carregadas:', this.tasks);
+        //console.log('tasks carregadas:', this.tasks);
       },
+
+      //Tratamento de erros
       error: (err) => console.error('Erro ao carregar tarefas:', err)
     });
   }
 
  deleteTask(id: number): void {
   const confirmDelete = window.confirm('Tem certeza que deseja deletar esta tarefa?');
-  if (!confirmDelete) return; // se o usuário clicar em "Cancelar", não faz nada
+  if (!confirmDelete) return; 
 
   this.service.deleteTask(id).subscribe({
+
+    //Funcao se Der Certo
     next: () => {
       this.loadTask();
       console.log('Tarefa deletada com sucesso!');
     },
+
+    //Tratamento de erros
     error: (err) => console.error('Erro ao deletar:', err)
   });
 }

@@ -1,59 +1,139 @@
-# Frontend
+# Sped Task Tracker – Frontend + Backend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0.
+Este projeto consiste em uma aplicação simples de gerenciamento de tarefas, utilizando:
 
-## Development server
+- **Frontend:** Angular + TailwindCSS  
+- **Backend:** .NET Web API  
+- **Banco:** SQLite  
+- **Comunicação:** API REST
 
-To start a local development server, run:
+Agradecimento especial à equipe da **Sped Automation**, cujo apoio e orientação foram essenciais para a construção deste projeto.
+
+---
+
+## 🖼️ Capturas de Tela
+
+### Tela Inicial
+![Tela Inicial](./printtask.png)
+
+---
+
+## 📦 Como Rodar o Projeto
+
+### 1. Rodar o Backend (.NET)
+
+Entre na pasta do backend:
 
 ```bash
+cd backend
+dotnet run
+
+### 1. Rodar o Front End (Angular)
+
+Entre na pasta do frontend:
+
+```bash
+cd frontend
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+## 🧠 Decisões Técnicas
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Serviço Angular Estruturado com HttpClient
 
-```bash
-ng generate component component-name
-```
+O `TaskServiceTs` foi implementado seguindo o padrão de **serviço isolado** para centralizar todas as comunicações HTTP com o backend:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **Única fonte de verdade** para rotas e métodos HTTP.
+- Facilita manutenção e refatorações, já que qualquer alteração de rota é feita apenas no service.
+- Uso direto do `HttpClient`, garantindo:
+  - Tipagem forte com `Observable<TaskModel>`
+  - Fluxo assíncrono controlado
+  - Maior segurança e previsibilidade
 
-```bash
-ng generate --help
-```
+A separação clara entre responsabilidades (**Service → Component**) evita lógica duplicada e mantém o componente focado apenas em UI e eventos.
 
-## Building
+---
 
-To build the project run:
+### Reactive Forms com Validação Estrita
 
-```bash
-ng build
-```
+No formulário do componente `CreateTaskComponent` escolhi usar **Reactive Forms** devido a:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- Validações precisas e declarativas (`Validators.min`, `Validators.max`, `Validators.required`)
+- Controle total do estado do formulário (touched, errors...)
+- Maior escalabilidade para formulários futuros, como edição, filtros e busca
 
-## Running unit tests
+Regras aplicadas:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- `titulo`: 3 a 15 caracteres  
+- `descricao`: 5 a 70 caracteres  
 
-```bash
-ng test
-```
+Isso evita inconsistências tanto no frontend quanto no backend, tipo estourar a memoria etc
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+### Fluxo de Submissão com Feedback Imediato
 
-```bash
-ng e2e
-```
+Ao enviar o formulário (`submit()`):
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- Verificação imediata `if (this.form.invalid) return`
+- Feedback visual ao usuário usando `alert()`  
+- Redirecionamento automático com `this.router.navigate(["/tasks"])`
+- Reset completo do form após sucesso (`this.form.reset()`)
 
-## Additional Resources
+Esse fluxo reduz erros, melhora a UX e mantém o componente limpo.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+## 🔧 Desafios Enfrentados
+
+### 1. Sincronização de Tipos entre Frontend e Backend
+
+Garantir que a estrutura enviada ao backend (`{titulo, descricao}`) estivesse alinhada com o `TaskModel` exigiu:
+
+- Tipagem correta no `service.createTask()`
+- Uso de `Partial<TaskModel>` no update
+- Atenção ao retorno esperado de cada rota HTTP
+
+Isso evitou erros silenciosos e problemas de compatibilidade.
+
+---
+
+### 2. Validações Divergentes (HTML vs Reactive Form)
+
+Mesmo usando `maxlength`, `Validators.max` e `max=""` no input:
+
+- O navegador ainda permitia inserção acima do limite em algumas situações.
+- A validação teve que ser tratada **somente pelo Reactive Form**, garantindo precisão.
+
+---
+
+### 3. Atualização da Lista após CRUD
+
+Após criar ou deletar tarefas:
+
+- A lista não atualizava automaticamente em alguns componentes.
+- A solução foi aplicar manualmente o **ChangeDetectorRef**, garantindo renderização correta da view.
+
+---
+
+### 4. Rotas do Backend e Testes com HttpClient
+
+Durante testes iniciais:
+
+- A rota `/api/task` e as rotas dinâmicas (`/id`) precisavam estar 100% corretas.
+- Pequenos erros de path resultaram em `404` e `CORS`.
+- Ajustes finos foram feitos tanto no controller quanto no Angular service.
+
+---
+
+### 5. TailwindCSS Integrado ao Angular Standalone Components
+
+Problemas encontrados:
+
+- Classes como `hover:` e `@apply` não funcionavam até ajustar o arquivo `styles.css`
+- Necessidade de configurar corretamente o `content:` no `tailwind.config.js` incluindo:
+  - `./src/**/*.{html,ts}`
+
+---
+
+

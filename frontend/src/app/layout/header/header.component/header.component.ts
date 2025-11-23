@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
+  
+  //Variavel do Botão Responsivo
   mobileBtnOpen: boolean = false;
 
   open(){

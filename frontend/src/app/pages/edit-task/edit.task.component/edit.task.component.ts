@@ -27,11 +27,12 @@ export class EditTaskComponent implements OnInit {
     this.id = Number(this.aroute.snapshot.paramMap.get("id"))
 
     this.form = this.fb.group({
-      descricao: ['', [Validators.required, Validators.min(5)]],
-      status: ['', [Validators.required]]
+      descricao: ['', [Validators.required, Validators.min(5)]],//Validação da Descricao
+      status: ['', [Validators.required]]//Validacao do Status
     })
 
     this.service.getTask(this.id).subscribe({
+      //Funcao se der Certo
       next: (task) => {
         this.form.patchValue({
           descricao: task.descricao,
@@ -39,6 +40,7 @@ export class EditTaskComponent implements OnInit {
 
         })
       },
+      //Tratamento de erros
       error: (err) => {
         console.error('Erro ao Carregar Task', err)
       }
@@ -49,10 +51,12 @@ export class EditTaskComponent implements OnInit {
     if(this.form.invalid) return
 
     this.service.updateTask(this.id, this.form.value).subscribe({
+      //Funcao se der Certo
       next: () => {
         alert("Sucesso ao Editar!")
         this.router.navigate(['/tasks'])
       },
+      //Tratamento de erros
       error: (err) => {
         alert("Erro ao Editar!")
         console.error("Erro ao Editar:", err)
